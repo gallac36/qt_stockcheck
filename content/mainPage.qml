@@ -25,8 +25,6 @@ Rectangle {
 
     }
 
-
-
     StackLayout {
         id: stackLayout
         anchors {
