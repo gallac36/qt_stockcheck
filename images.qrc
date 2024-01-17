@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>content/images/foodcheck-2-logo.png</file>
+        <file>content/images/Kelsius-Logo-Colour.png</file>
+    </qresource>
+</RCC>
