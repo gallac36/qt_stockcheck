@@ -7,6 +7,8 @@ the login button to load the second screen "mainPage.qml. The login button is mo
 The main page consists of 2 views in a StackLayout. The views are switched using the 2 main buttons which act more like tabs in this functionality.
 
 The layout was designed using my Samsung A54 which has a screen resolution of 1040*2340. Some elements are more responsive than others.
+
+
 <img src="/Screenshot_1.jpg" width="150"/>      <img src="/Screenshot_2.jpg" width="150"/>
 
 The exit button quits the app. The code to launch a popup dialogue is there but commented out due to plugin issues.
