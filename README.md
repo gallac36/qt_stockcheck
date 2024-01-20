@@ -13,15 +13,12 @@ The layout was designed using my Samsung A54 which has a screen resolution of 10
 
 The exit button quits the app. The code to launch a popup dialogue is there but commented out due to plugin issues.
 
+##ToDo
+The inventory view needs to be presented in columns.
+Make the inventory view editable.
+Sort by date, name, etc
+make the delivery date in the delivery view default to today's date.
+
+
 ## Issues
-
-The primary issue was difficulty accessing an SQLite database in QML for an application developed using Qt Quick. The goal was to interact with the database directly from QML to perform operations such as inserting, querying, and updating data.
-Attempted Solution:
-
-To address this issue, an attempt was made to create a DatabaseWrapper class in C++ that would expose the SQLite database to QML. This class utilized signals and slots to emit a signal (databaseLoaded) upon successful database initialization. The intention was to connect this signal to QML and perform database operations when the signal was emitted.
-
-However, despite the effort to use the DatabaseWrapper class, there were challenges in connecting the signal and handling the database object in QML. The onDatabaseLoaded property was created in QML to respond to the emitted signal, but there were difficulties in using the database object (db) directly within QML components.
-
-Unfortunately, due to constraints and time limitations, a complete solution to seamlessly integrate the SQLite database with QML could not be achieved.
-
-The issue with the quit dialogue indicates that the QtQuick.Dialogs module is not installed or imported in the QML file. But it is, so might be an issue with Qt versions, needs further exploring. 
+The code to generate a popup dialogue that asks the user if they are sure they want to quit before closing the app is there but commented out. The issue with the quit dialogue indicates that the QtQuick.Dialogs module is not installed or imported in the QML file. But it is, so might be an issue with Qt versions, needs further exploring. 
