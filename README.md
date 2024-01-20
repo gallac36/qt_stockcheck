@@ -13,7 +13,7 @@ The layout was designed using my Samsung A54 which has a screen resolution of 10
 
 The exit button quits the app. The code to launch a popup dialogue is there but commented out due to plugin issues.
 
-##ToDo
+## ToDo
 The inventory view needs to be presented in columns.
 Make the inventory view editable.
 Sort by date, name, etc
