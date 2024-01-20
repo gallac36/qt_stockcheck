@@ -19,7 +19,10 @@ endif()
 
 qt_add_executable(StockCheck3App src/main.cpp
     images.qrc inventory.sqlite
-    src/databasewrapper.h src/databasewrapper.cpp)
+
+    src/databasehandler.h src/databasehandler.cpp
+
+)
 
 qt_add_resources(StockCheck3App "configuration"
     PREFIX "/"

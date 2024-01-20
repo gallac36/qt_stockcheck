@@ -34,6 +34,14 @@ Rectangle {
             left: parent.left
         }
 
+        onCurrentIndexChanged: {
+                // Check if the current item is the InventoryView
+                if (currentIndex === 1) {
+                    console.log("Switched to InventoryView");
+                    inventoryView.loadData();
+                }
+            }
+
             DeliveryView {
                 id: deliveryView
                 width: stackLayout.width
@@ -44,6 +52,7 @@ Rectangle {
                 id: inventoryView
                 width: stackLayout.width
                 height: stackLayout.height
+
 
             }
             Rectangle {

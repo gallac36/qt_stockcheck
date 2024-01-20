@@ -11,6 +11,8 @@ DatabaseWrapper::DatabaseWrapper(QObject *parent) : QObject(parent)
     // Call a function to emit the signal
     emitDatabaseLoadedSignal();
 
+
+
 }
 void DatabaseWrapper::emitDatabaseLoadedSignal() {
     emit databaseLoaded();
@@ -19,3 +21,7 @@ QSqlDatabase DatabaseWrapper::database() const
 {
     return m_database;
 }
+
+
+
+

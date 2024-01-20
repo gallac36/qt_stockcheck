@@ -17,17 +17,26 @@ Rectangle {
         anchors.topMargin: 20
         anchors.bottomMargin: 20
 
+        Component.onCompleted: {
+                // Access the database object
+                if (databaseHandler.openDatabase()) {
+                    inventoryDatabase.createDeliveryTable();
+                    console.log("Database opened successfully in DeliveryView.qml");
+                } else {
+                    console.error("Failed to open the database in DeliveryView.qml");
+                }
+            }
 
         // Use Connections to handle the completion of the QML engine
         Connections {
-            target: inventoryDatabase
+            target: databaseHandler
 
             // Assuming you have a signal named databaseLoaded in DatabaseWrapper
             onDatabaseLoaded: {
                 console.log("Database loaded in InventoryView.qml");
                 // Perform operations with the database, e.g., execute queries
                 var query = "SELECT * FROM DeliveryData";
-                var result = inventoryDatabase.database.exec(query);
+                var result = databaseHandler.database.exec(query);
 
                 while (result.next()) {
                     console.log("Record:", result.value("brand"), result.value("amountDelivered"));
@@ -101,36 +110,33 @@ Rectangle {
                 inputMethodHints: Qt.ImhDigitsOnly
             }
 
+
+
+
+
             Button {
+                id: saveButton
                 font: gridLayout.font
                 text: "Save"
                 onClicked: {
-                    console.log("Save button clicked");
+                    var brandValue = brandInput.text;
+                    var amountValue = parseInt(amountInput.text);
+                    var dateValue = dateInput.text;
+                    var itemCountValue = parseInt(itemCountInput.text);
+
+                    console.log("Values to be inserted:", brandValue, amountValue, dateValue, itemCountValue);
+
                     // Save the input to the database
-                    var query = "INSERT INTO DeliveryData (brand, amountDelivered, deliveryDate, itemCount) VALUES ("
-                                + "'" + brandInput.text + "',"
-                                + amountInput.text + ","
-                                + "'" + dateInput.text + "',"
-                                + itemCountInput.text + ")";
-
-                    var result = db.exec(query);
-
-                        // Check if the query was successful
-                        if (result.rowsAffected > 0) {
-                            // Clear the form for another entry
-                            brandInput.text = "";
-                            amountInput.text = "";
-                            dateInput.text = "";
-                            itemCountInput.text = "";
-
-                            // (Optional) Signal a change in the model if you have connected properties to UI components
-                            // This helps update the UI when the underlying data changes
-                            brandInput.model = "";
-                            amountInput.model = "";
-                            dateInput.model = "";
-                            itemCountInput.model = "";
-                        }
-
+                    if (databaseHandler.insertData(brandValue, amountValue, dateValue, itemCountValue)) {
+                        console.log("Data inserted successfully!");
+                        // Clear the form for another entry
+                        brandInput.text = "";
+                        amountInput.text = "";
+                        dateInput.text = "";
+                        itemCountInput.text = "";
+                    } else {
+                        console.error("Failed to insert data:");
+                    }
                 }
             }
         }
